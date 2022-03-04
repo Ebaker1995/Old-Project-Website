@@ -21,3 +21,16 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+h1 {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.first {
+  position: relative;
+  top: 10%;
+  left: 50%;
+}
