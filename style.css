@@ -30,7 +30,21 @@ h1 {
 }
 
 .first {
-  position: relative;
-  top: 10%;
+  position: absolute;
+  top: 20%;
   left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+ul {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+.no-bullets {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
