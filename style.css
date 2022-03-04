@@ -48,3 +48,40 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+/*Image hover*/
+* {
+  box-sizing: border-box;
+}
+
+.container-pig {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  left: -150%;
+}
+
+.image-pig {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay-pig {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  color: white;
+  font-size: 20px;
+  padding: 40px;
+  text-align: center;
+}
+
+.container-pig:hover .overlay-pig {
+  opacity: 1;
+}
