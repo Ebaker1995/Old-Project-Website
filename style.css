@@ -85,3 +85,7 @@ ul {
 .container-pig:hover .overlay-pig {
   opacity: 1;
 }
+
+ul.no-bullets {
+  list-style-type: none;
+}
