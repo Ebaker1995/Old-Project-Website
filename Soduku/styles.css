@@ -1,0 +1,207 @@
+body {
+  font-family: arial;
+  text-align: center;
+  background-color: rgb(44, 44, 44);
+  color: rgb(255, 255, 255);
+  user-select: none;
+}
+
+hr {
+  width: 500px;
+}
+
+.top-container {
+  overflow: hidden;
+  margin: 0 auto;
+  left: 50%;
+  width: 60%;
+  height: 50px;
+}
+
+#errors {
+  color: coral;
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#display {
+  display: inline-block;
+  position: relative;
+  right: -37%;
+  top: 25%;
+}
+
+#board {
+  width: 480px;
+  height: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.new-game-container {
+  height: 50px;
+  border-radius: 4px 4px 4px 4px;
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 40%);
+}
+
+#game {
+  color: rgb(230, 0, 0);
+}
+
+#digits {
+  width: 480px;
+  height: 50px;
+  color: white;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.tile {
+  width: 50px;
+  height: 50px;
+  border: 1px solid lightgray;
+  color: rgb(255, 255, 255);
+
+  /* TEXT */
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  animation: fadein 1.5s;
+
+  opacity: 1;
+  transition: all 1s;
+}
+
+.number {
+  width: 47px;
+  height: 47px;
+  border: 1px solid rgb(255, 255, 255);
+  margin: 2px;
+
+  /* TEXT */
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadein 1.5s;
+}
+
+.number-selected {
+  background-color: antiquewhite;
+}
+
+.number.number-selected {
+  color: rgb(32, 32, 32);
+}
+
+.tile-dark {
+  background-color: rgb(16, 16, 16);
+  animation: fadein 1.5s;
+}
+
+.horizontal-line {
+  border-bottom: 4px solid rgb(255, 255, 255);
+}
+
+.vertical-line {
+  border-right: 4px solid rgb(255, 255, 255);
+}
+
+button {
+  border-radius: 4px 4px 4px 4px;
+  height: 50px;
+  background-color: rgb(0, 0, 0);
+  border: 2px solid black;
+  color: white;
+  transition-duration: 0.4s;
+  animation: fadein 2s;
+}
+
+button:hover {
+  background-color: #4caf50; /* Green */
+  color: white;
+  cursor: pointer;
+}
+
+.noselect {
+  user-select: none;
+}
+
+div {
+  animation: fadein 1.5s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: aqua;
+  background-color: rgb(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  background-color: #000;
+  width: 50%;
+  top: 25%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  animation-name: animatetop;
+  animation-duration: 1s;
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 25%;
+    opacity: 1;
+  }
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
