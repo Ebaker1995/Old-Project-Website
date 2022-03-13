@@ -16,7 +16,7 @@ let board = [
   "81--45---",
 ];
 
-const solution = [
+const solutios = [
   "387491625",
   "241568379",
   "569327418",
@@ -174,3 +174,15 @@ function startStopWatch() {
     window.setInterval(stopWatch, 1000);
   }
 }
+
+//TEST GENERATOR
+
+const mad5dsudoku = require("./mad5dsudoku");
+
+//Create full random 9x9 sudoku
+let sudoku = mad5dsudoku.create_sudoku_9x9();
+
+puzzle = sudoku.grid_with_holes;
+solution = sudoku.full_grid;
+
+console.log(board);

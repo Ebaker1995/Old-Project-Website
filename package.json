@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "mad5dsudoku": "^1.0.20",
+    "requirejs": "^2.3.6",
+    "sudoku": "^0.0.3"
+  }
+}
