@@ -205,3 +205,93 @@ div {
   text-decoration: none;
   cursor: pointer;
 }
+
+@media screen and (max-device-width: 800px) {
+  #board {
+    width: 360px;
+    height: 360px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  hr {
+    width: 300px;
+  }
+
+  .new-game-container {
+    height: 50px;
+    border-radius: 4px 4px 4px 4px;
+    margin: 0;
+    position: relative;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, 40%);
+  }
+
+  #game {
+    color: rgb(230, 0, 0);
+  }
+
+  #digits {
+    width: 360px;
+    height: 50px;
+    color: white;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tile {
+    width: 36px;
+    height: 36px;
+    border: 1px solid lightgray;
+    color: rgb(255, 255, 255);
+
+    /* TEXT */
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: fadein 1.5s;
+
+    opacity: 1;
+    transition: all 1s;
+  }
+
+  .number {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgb(255, 255, 255);
+    margin: 2px;
+
+    /* TEXT */
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadein 1.5s;
+  }
+
+  .horizontal-line {
+    border-bottom: 4px solid rgb(255, 255, 255);
+  }
+
+  .vertical-line {
+    border-right: 4px solid rgb(255, 255, 255);
+  }
+
+  .top-container {
+    overflow: hidden;
+    margin: 0 auto;
+    left: 50%;
+    width: 65%;
+    height: 50px;
+  }
+}
