@@ -16,9 +16,37 @@ let errors = 0;
 //   "81--45---",
 // ];
 
-//TEST GENERATOR
+// const solution = [
+//   "387491625",
+//   "241568379",
+//   "569327418",
+//   "758619234",
+//   "123784596",
+//   "496253187",
+//   "934176852",
+//   "675832941",
+//   "812945763",
+// ];
+
+//GENERATE BOARD
 
 let completeBoard = [];
+let completeSolutionBoard = [];
+
+const encodeBoard = (sudokuBoard) =>
+  sudokuBoard.reduce(
+    (result, row, i) =>
+      result +
+      `%5B${encodeURIComponent(row)}%5D${
+        i === sudokuBoard.length - 1 ? "" : "%2C"
+      }`,
+    ""
+  );
+
+const encodeParams = (params) =>
+  Object.keys(params)
+    .map((key) => key + "=" + `%5B${encodeBoard(params[key])}%5D`)
+    .join("&");
 
 async function genBoard() {
   let response = await fetch(
@@ -33,25 +61,40 @@ genBoard().then((sudokuBoard) => {
 
   for (i = 0; i < sudokuBoard.board.length; i++) {
     let newRow = sudokuBoard.board[i].toString();
-    console.log(newRow);
     newRow = newRow.replaceAll(",", "");
     completeBoard.push(newRow);
   }
-  // completeBoard = completeBoard.replaceAll(",", "");
-  console.log(completeBoard);
-});
 
-const solution = [
-  "387491625",
-  "241568379",
-  "569327418",
-  "758619234",
-  "123784596",
-  "496253187",
-  "934176852",
-  "675832941",
-  "812945763",
-];
+  //GENERATE SOLUTION BOARD
+  // fetch("https://sugoku.herokuapp.com/solve", {
+  //   method: "POST",
+  //   body: encodeParams(sudokuBoard),
+  //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  // })
+  //   .then((response) => response.json())
+  //   .then((response) => console.log(response.solution))
+  //   .then((response) => console.log(response.solution))
+
+  //   .catch(console.warn);
+
+  async function genSolutionBoard() {
+    let response = await fetch("https://sugoku.herokuapp.com/solve", {
+      method: "POST",
+      body: encodeParams(sudokuBoard),
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    });
+    let sudokuSolutionBoard = await response.json();
+    return sudokuSolutionBoard;
+  }
+
+  genSolutionBoard().then((sudokuSolutionBoard) => {
+    for (i = 0; i < sudokuSolutionBoard.solution.length; i++) {
+      let newSolutionRow = sudokuSolutionBoard.solution[i].toString();
+      newSolutionRow = newSolutionRow.replaceAll(",", "");
+      completeSolutionBoard.push(newSolutionRow);
+    }
+  });
+});
 
 window.onload = function () {
   setGame();
@@ -118,7 +161,7 @@ function selectTile() {
     let r = parseInt(coords[0]);
     let c = parseInt(coords[1]);
 
-    if (solution[r][c] == numSelected.id) {
+    if (completeSolutionBoard[r][c] == numSelected.id) {
       this.innerText = numSelected.id;
       if (typeof this.innerText == "string") {
         this.classList.add("tile-dark");
@@ -127,7 +170,9 @@ function selectTile() {
 
       //WIN CONDITION
       const modal = document.getElementById("winModal");
-      if (solvedTiles === 46) {
+      let tileSolved = document.getElementsByClassName("tile-dark").length;
+
+      if (tileSolved === 81) {
         console.log("YOU WIN");
         modal.style.display = "block";
       }
