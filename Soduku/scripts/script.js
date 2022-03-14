@@ -4,19 +4,44 @@ let solvedTiles = 0;
 
 let errors = 0;
 
-let board = [
-  "--74916-5",
-  "2---6-3-9",
-  "-----7-1-",
-  "-586----4",
-  "--3----9-",
-  "--62--187",
-  "9-4-7---2",
-  "67-83-----",
-  "81--45---",
-];
+// let board = [
+//   "--74916-5",
+//   "2---6-3-9",
+//   "-----7-1-",
+//   "-586----4",
+//   "--3----9-",
+//   "--62--187",
+//   "9-4-7---2",
+//   "67-83-----",
+//   "81--45---",
+// ];
 
-const solutios = [
+//TEST GENERATOR
+
+let completeBoard = [];
+
+async function genBoard() {
+  let response = await fetch(
+    "https://sugoku.herokuapp.com/board?difficulty=hard"
+  );
+  let sudokuBoard = await response.json();
+  return sudokuBoard;
+}
+genBoard().then((sudokuBoard) => {
+  // console.log(sudokuBoard.board[0]);
+  // const newBoard = function () {
+
+  for (i = 0; i < sudokuBoard.board.length; i++) {
+    let newRow = sudokuBoard.board[i].toString();
+    console.log(newRow);
+    newRow = newRow.replaceAll(",", "");
+    completeBoard.push(newRow);
+  }
+  // completeBoard = completeBoard.replaceAll(",", "");
+  console.log(completeBoard);
+});
+
+const solution = [
   "387491625",
   "241568379",
   "569327418",
@@ -55,8 +80,8 @@ function setGame() {
       button.addEventListener("click", generateBoard);
 
       function generateBoard() {
-        if (board[r][c] != "-") {
-          tile.innerText = board[r][c];
+        if (completeBoard[r][c] != "0") {
+          tile.innerText = completeBoard[r][c];
           tile.classList.add("tile-dark");
         }
       }
@@ -174,15 +199,3 @@ function startStopWatch() {
     window.setInterval(stopWatch, 1000);
   }
 }
-
-//TEST GENERATOR
-
-const mad5dsudoku = require("./mad5dsudoku");
-
-//Create full random 9x9 sudoku
-let sudoku = mad5dsudoku.create_sudoku_9x9();
-
-puzzle = sudoku.grid_with_holes;
-solution = sudoku.full_grid;
-
-console.log(board);
